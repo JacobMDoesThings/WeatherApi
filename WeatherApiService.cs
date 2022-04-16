@@ -13,39 +13,48 @@ namespace WeatherApi
     public class WeatherApiService : IWeatherApiService
     {
 
-
+        private readonly Uri _baseAddress = new ("https://weatherdbi.herokuapp.com/data/weather/");
+        
         private readonly HttpClient _client;
         public WeatherApiService(HttpClient client)
         {
-
+           
+           
             _client = client;
+          
         }
         public async Task<Forecast> GetForecast(string location)
         {
             Forecast? forecast = new ();
-            var response = await _client.GetAsync(location);
-            Console.WriteLine(_client.BaseAddress+location); ;
-            Console.WriteLine(response.StatusCode.ToString());
-            if (response.IsSuccessStatusCode)
+            try 
             {
-                
-                forecast = await response.Content.ReadFromJsonAsync<Forecast>();
-                if (forecast is null)
-                {
-                    forecast = new Forecast();
-                }
+                var response = await _client.GetAsync(_baseAddress + location);
 
-            }
-            else if (response.StatusCode == HttpStatusCode.UnprocessableEntity || response.StatusCode == HttpStatusCode.BadRequest)
-            {
-                var errorMessage = await response.Content.ReadFromJsonAsync<ErrorResponse>();
-                if (errorMessage is null)
+               
+                if (response.IsSuccessStatusCode)
                 {
-                    errorMessage = new ();
+
+                    forecast = await response.Content.ReadFromJsonAsync<Forecast>();
+                    if (forecast is null)
+                    {
+                        forecast = new Forecast();
+                    }
+
                 }
-             
-                throw new WeatherApiException(errorMessage.ToString());
+                else if (response.StatusCode == HttpStatusCode.UnprocessableEntity || response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    var errorMessage = await response.Content.ReadFromJsonAsync<ErrorResponse>();
+                    if (errorMessage is null)
+                    {
+                        errorMessage = new();
+                    }
+
+                    throw new WeatherApiException(errorMessage.ToString());
+                }
             }
+            catch (Exception) { throw; }
+         
+    
             return forecast;
 
         }
