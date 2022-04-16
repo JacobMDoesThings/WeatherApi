@@ -11,16 +11,16 @@ namespace WeatherApi.Models
     public record Day
     {
         [JsonPropertyName("day")]
-        public string? DayOfWeek { get; set; }
+        public string DayOfWeek { get; set; } = string.Empty;
         [JsonPropertyName("comment")]
-        public string? Comment { get; set; }
+        public string Comment { get; set; } = string.Empty;
         [JsonPropertyName("min_temp")]
 
         public TemperatureInCandF MinTemp { get; set; }
         [JsonPropertyName("max_temp")]
         public TemperatureInCandF MaxTemp { get; set; }
         [JsonPropertyName("iconUrl")]
-        public string? IconUrl { get; set; }
+        public string IconUrl { get; set; } = string.Empty;
 
     }
 }

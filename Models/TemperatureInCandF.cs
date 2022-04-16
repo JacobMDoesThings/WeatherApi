@@ -10,8 +10,8 @@ namespace WeatherApi.Models
     public struct TemperatureInCandF
     {
         [JsonPropertyName("c")]
-        public int? Celsius { get; set; }
+        public int Celsius { get; set; }
         [JsonPropertyName("f")]
-        public int? Fahrenheit { get; set; }
+        public int Fahrenheit { get; set; }
     }
 }

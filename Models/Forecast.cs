@@ -10,11 +10,11 @@ namespace WeatherApi.Models
     public record Forecast
     {
         [JsonPropertyName("region")]
-        public string? Region { get; set; }
+        public string Region { get; set; } = string.Empty;
         [JsonPropertyName("data_source")]
-        public string? DataSource { get; set; }
+        public string DataSource { get; set; } = string.Empty;
         [JsonPropertyName("currentConditions")]
-        public CurrentWeather? CurrentConditions { get; set; }
+        public CurrentWeather CurrentConditions { get; set; } = new CurrentWeather();
         [JsonPropertyName("next_days")]
         public Day[] NextDays {get;set;} = new Day[7];
         [JsonPropertyName("contact_author")]
