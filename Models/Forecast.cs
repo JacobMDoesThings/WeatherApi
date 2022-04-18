@@ -16,7 +16,7 @@ namespace WeatherApi.Models
         [JsonPropertyName("currentConditions")]
         public CurrentWeather CurrentConditions { get; set; } = new CurrentWeather();
         [JsonPropertyName("next_days")]
-        public Day[] NextDays {get;set;} = new Day[7];
+        public List<Day> NextDays = new List<Day>();
         [JsonPropertyName("contact_author")]
         public AuthorDetails ContactAuthor { get; set; }
        
