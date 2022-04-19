@@ -33,13 +33,11 @@ namespace WeatherApi
                
                 if (response.IsSuccessStatusCode)
                 {
-
                     forecast = await response.Content.ReadFromJsonAsync<Forecast>();
                     if (forecast is null)
                     {
                         forecast = new Forecast();
                     }
-
                 }
                 else if (response.StatusCode == HttpStatusCode.UnprocessableEntity || response.StatusCode == HttpStatusCode.BadRequest)
                 {

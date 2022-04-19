@@ -8,8 +8,7 @@ using WeatherApi.Models;
 namespace WeatherApi
 {
     public interface IWeatherApiService
-    {
-       
+    {      
         Task<Forecast> GetForecast(string location);
     }
 }
