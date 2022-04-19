@@ -2,7 +2,7 @@
 .Net Library for weatherdbi.herokuapp.com Api
 
 Install with nuget
-Install-Package WeatherDbWeatherApi -Version 1.0.2
+Install-Package WeatherDbWeatherApi -Version 1.0.4
 
 Create or inject new WeatherApiService passing a HttpClient dependency.
 HttpClient must have unaltered BaseAddress.
